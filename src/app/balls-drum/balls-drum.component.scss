@@ -1,0 +1,19 @@
+@import '../../styles.scss';
+
+#container{
+    max-width: $game-width;
+    height: $game-height;
+    background-color: $game-bg-color;
+    border-left: $game-border-left;
+    padding: 5px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#ball-selector-container{
+    flex-grow: 3;
+}
+
+#bet-slip-container{
+    flex-grow: 1;
+}

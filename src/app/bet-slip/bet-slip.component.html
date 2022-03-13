@@ -1,0 +1,40 @@
+<div id="container" class="columns">
+    <div id="bet_amount" class="columns center-center">
+
+        <div id="balls_selected" class="rows">
+            <div *ngFor="let number of [0,1,2,3,4,5,6,7]" [ngClass]="{
+                'little-circle': true, 
+                'ml-4': true, 
+                'center-center': true, 
+                'gray': !dataService.bet.balls_selected[number], 
+                'green-selected': (dataService.bet.balls_selected[number] && dataService.bet.balls_selected[number].color === 'green'), 
+                'red-selected': dataService.bet.balls_selected[number] && dataService.bet.balls_selected[number].color === 'red', 
+                'yellow-selected': dataService.bet.balls_selected[number] && dataService.bet.balls_selected[number].color === 'yellow'
+            }">
+                <div *ngIf="dataService.bet.balls_selected[number]">{{dataService.bet.balls_selected[number].number}}
+                </div>
+            </div>
+        </div>
+
+        <div id="input_stake" class="rows mb-20">
+            <div class="center-center gray wh-40">{{dataService.bet.balls_selected.length}}x</div>
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                id="input_stake_money" value="{{dataService.bet.input_stake}}">
+            <button id="ok_button" type="button" (click)="changeAmount()">Ok</button>
+        </div>
+
+        <div *ngIf="errorMessage" class="mw-90">
+            <div class="danger-alert center-center">
+                <div>
+                    {{errorMessage}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="total_money" class="center-center mt-10"> Total: {{dataService.total_money}}€</div>
+    <div id="place_bet" class="center mt-10">
+        <button id="place_bet_button" type="button" (click)="placeBet()" disabled="true">Place bet</button>
+    </div>
+</div>

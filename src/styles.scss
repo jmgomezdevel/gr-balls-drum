@@ -1,1 +1,151 @@
-/* You can add global styles to this file, and also import other style files */
+$game-width: 900px;
+$game-height: 400px;
+
+// Colors
+
+$game-bg-color: #f3f2f8;
+$bg-white: #ffffff;
+$gray: #e3e3ed;
+
+$light-blue: #00a3e8;
+$strong-blue: #018dc9;
+
+$strong-green: #4ca668;
+$light-green: #e1f3ef;
+$border-green: #d8dedc;
+
+$strong-red: #d95155;
+$light-red: #ffe9ec;
+$border-red: #e3d4d9;
+
+$strong-yellow: #ffc642;
+$light-yellow: #fcfbe3;
+$border-yellow: #fcf2db;
+
+$place-bet-blue: #2491fa;
+$place-bet-disabled: #7ec1ff;
+
+// Borders
+$game-border-left: 3px solid #0b43ac;
+$place-bet-border: #2491fa;
+
+
+// -------------------------------------------------------------------------------------- //
+
+body{
+    background-color: $game-bg-color;
+    font-family: Arial, sans-serif;
+}
+
+// Flexbox
+
+.rows{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.columns{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+// Justify content
+
+.center-center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center{
+    display:flex;
+    justify-content: center;
+}
+
+// Margins
+
+.mb-20{
+    margin-bottom: 20px;
+}
+
+.mb-40{
+    margin-bottom: 40px;
+}
+
+.ml-4{
+    margin-left: 4px;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+.mr-10{
+    margin-right: 10px;
+}
+
+// Balls
+
+.circle {
+    width: 50px;
+    height: 50px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.little-circle{
+    width: 25px;
+    height: 25px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.green-selected{
+    background-color: $strong-green;
+}
+
+.green{
+    background-color: $light-green;
+    border: 1px solid $border-green;
+}
+
+.red-selected{
+    background-color: $strong-red;
+}
+
+.red{
+    background-color: $light-red;
+    border: 1px solid $border-red;
+}
+
+.yellow-selected{
+    background-color: $strong-yellow;
+}
+
+.yellow{
+    background-color: $light-yellow;
+    border: 1px solid $border-yellow;
+}
+
+.gray{
+    background-color: $gray;
+}
+
+// Width
+
+.wh-40{
+    width: 40px;
+    height: 40px;
+}
+
+.mw-90{
+    max-width: 90%;
+}
+
+// Others
+
+.pointer{
+    cursor: pointer;
+}

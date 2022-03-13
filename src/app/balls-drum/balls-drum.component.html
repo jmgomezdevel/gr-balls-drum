@@ -1,0 +1,8 @@
+<div id="container" *ngIf="dataService.bet.n_balls && dataService.bet.max_selection">
+    <div id="ball-selector-container" >
+        <app-ball-selector></app-ball-selector>
+    </div>
+    <div id="bet-slip-container">
+        <app-bet-slip></app-bet-slip>
+    </div>
+</div>

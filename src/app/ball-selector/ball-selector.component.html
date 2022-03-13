@@ -1,0 +1,41 @@
+<div id="container" class="center-center">
+    <div class="wallet center-center mt-10">
+        <div>
+            Wallet: {{dataService.user.wallet}}€
+        </div>
+    </div>
+    <div class="center-center columns">
+        <b *ngIf="dataService.state === 'ready'" class="mb-20 mt-10">Numbers</b>
+        <b *ngIf="dataService.state === 'finished'" class="mb-20 mt-10">Result</b>
+        <div id="balls_container" class="rows mb-20">
+            <div *ngFor="let ball of (dataService.state === 'ready' ? dataService.bet.drum : [dataService.bet.result_ball])" 
+            (click) = "addOrDeleteBall(ball)"
+            [ngClass]="
+            {'circle': true, 'ml-4': true, 
+            'mr-10': ball.number === dataService.bet.n_balls, 
+            'center-center': true, 
+            'pointer': true,
+            'green': ball.color === 'green' && !dataService.checkBall(ball), 
+            'green-selected': ball.color === 'green' && dataService.checkBall(ball),
+            'red': ball.color === 'red' && !dataService.checkBall(ball), 
+            'red-selected': ball.color === 'red' && dataService.checkBall(ball),
+            'yellow': ball.color === 'yellow' && !dataService.checkBall(ball),
+            'yellow-selected': ball.color === 'yellow' && dataService.checkBall(ball)}
+            ">
+                <b>{{ball.number}}</b>
+            </div>
+        </div>
+
+        <a *ngIf="dataService.state === 'ready'" class="clear-button pointer mb-20" (click)='clearSelection()'>Clear selection</a>
+        <div *ngIf="dataService.state === 'finished'" class="mb-20 center-center" >
+            <div *ngIf="dataService.bet.money_alteration >= 1" class="win">
+                <b>YOU WIN {{dataService.bet.money_alteration}} €</b>
+            </div>
+            <div *ngIf="dataService.bet.money_alteration <= 1" class="lose">
+                <b>YOU LOSE {{dataService.bet.money_alteration*-1}} €</b>
+            </div>
+        </div>
+
+    </div>
+
+</div>

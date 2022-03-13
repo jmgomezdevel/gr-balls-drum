@@ -1,0 +1,94 @@
+@import '../../styles.scss';
+
+// Flexbox
+
+#container{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#bet_amount{
+    background-color: $bg-white;
+    margin-left: 5px;
+    flex-grow: 6;
+}
+
+#balls_selected{
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+#total_money{
+    flex-grow: 1;
+}
+
+#place_bet{
+    flex-grow: 3;
+}
+
+// Buttons
+
+#ok_button{
+    margin-left: 10px;
+    background-color: $light-blue;
+    border: 1px solid $strong-blue;
+    color: white;
+    width: 56px;
+    cursor: pointer;
+}
+
+#place_bet_button{
+    background-color: $place-bet-blue;
+    border: 1px solid $place-bet-border;
+    color: white;
+    height: 40px;
+    width: 90%;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+#place_bet_button:disabled{
+    background-color: $place-bet-disabled;
+}
+
+// Input
+
+#input_stake_money{
+    width: 60px;
+    border: 1px solid $gray;
+    text-align: center; 
+}
+
+#input_stake_money:focus {
+    outline: none !important;
+}
+
+// Alerts
+
+.danger-alert{
+    background-color: $light-red;
+    border: 1px solid $strong-red;
+    height: 30px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.red-border{
+    border: 1px solid $strong-red !important;
+}
+
+// Responsive
+
+@media(max-width: 897px){
+    #bet_amount{
+        margin-left: 0px;
+    }
+}
