@@ -1,12 +1,11 @@
-import { Ball } from "./ball";
+import { BallI } from "./ball";
 
-export interface Bet{
+export interface BetI{
     id: string,
     n_balls: number,
     max_selection: number,
-    drum: Ball[],
-    balls_selected: Ball[],
-    result_ball: Ball,
+    drum: BallI[],
+    result_ball: BallI,
     input_stake: number,
     money_alteration: number,
     user: string

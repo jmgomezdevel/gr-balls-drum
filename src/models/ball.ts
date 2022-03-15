@@ -1,4 +1,5 @@
-export interface Ball{
+export interface BallI{
     number: number,
-    color: string
+    color: string,
+    isSelected: boolean
 }

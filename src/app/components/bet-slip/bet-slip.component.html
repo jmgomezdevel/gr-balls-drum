@@ -2,25 +2,17 @@
     <div id="bet_amount" class="columns center-center">
 
         <div id="balls_selected" class="rows">
-            <div *ngFor="let number of numSequence()" [ngClass]="{
-                'little-circle': true, 
-                'ml-4': true, 
-                'center-center': true, 
-                'gray': !dataService.bet.balls_selected[number], 
-                'green-selected': (dataService.bet.balls_selected[number] && dataService.bet.balls_selected[number].color === 'green'), 
-                'red-selected': dataService.bet.balls_selected[number] && dataService.bet.balls_selected[number].color === 'red', 
-                'yellow-selected': dataService.bet.balls_selected[number] && dataService.bet.balls_selected[number].color === 'yellow'
-            }">
-                <div *ngIf="dataService.bet.balls_selected[number]">{{dataService.bet.balls_selected[number].number}}
+            <div *ngFor="let ball of ballsSelected()" [ngClass]="dataService.getBallClassesByBallNumber(ball.number, true)">
+                <div *ngIf="ball.isSelected">{{ball.number}}
                 </div>
             </div>
         </div>
 
         <form [formGroup] = "form">
             <div id="input_stake" class="rows mb-20">
-                <div class="center-center gray wh-40">{{dataService.bet.balls_selected.length}}x</div>
+                <div class="center-center gray wh-40">{{dataService.balls_selected}}x</div>
                 <input type="number" id="input_stake_money" class="form-control" formControlName="input_stake" [class.red-border]="form.get('input_stake')?.touched && form.get('input_stake')?.invalid" value="{{dataService.bet.input_stake}}">
-                <button id="ok_button" type="button" (click)="changeAmount()" [disabled]="dataService.state==='finished'">Ok</button>
+                <button id="ok_button" type="button" (click)="changeAmount()" [disabled]="dataService.state==='finished'" [disabled]="dataService.state==='finished'">Ok</button>
             </div>
         </form>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Ball } from 'src/models/ball';
+import { BallI } from 'src/models/ball';
 import { DataService } from 'src/services/data.service';
 
 @Component({
@@ -15,7 +15,11 @@ export class BallSelectorComponent {
 
   }
 
-  addOrDeleteBall(ball: Ball){
+  /* This method emit an event to dataService with a ball to select
+  *
+  * @return void
+  */
+  addOrDeleteBall(ball: BallI): void{
     this.dataService.addOrDeleteBallEmitter$.emit(ball)
   }
 

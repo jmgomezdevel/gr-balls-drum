@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnDestroy} from '@angular/core';
 import { DataService } from 'src/services/data.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { DataService } from 'src/services/data.service';
   templateUrl: './balls-drum.component.html',
   styleUrls: ['./balls-drum.component.scss']
 })
-export class BallsDrumComponent {
+export class BallsDrumComponent implements OnDestroy{
 
   public n_balls: number = 10;
   public max_selection: number = 8;
@@ -15,6 +15,10 @@ export class BallsDrumComponent {
     public dataService: DataService
   ) { 
     this.dataService.initDrum(this.n_balls, this.max_selection)
+  }
+
+  ngOnDestroy(): void {
+    this.dataService.bet.drum = []
   }
 
 }

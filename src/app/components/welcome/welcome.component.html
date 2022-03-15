@@ -1,0 +1,26 @@
+<h1> 🥁 GrBallsDrum 🥁 </h1>
+
+¡Welcome to the Ball Drum Game!
+
+This project will create you a Ball Drum game.
+
+<h2> Rules</h2>
+<ul>
+    <li>'n_balls' balls are placed in the lottery drum. By default is 10, but you can change this number in BallsDrumComponent.</li>
+    <li>The user can select a maximum of 'max_selection' balls per game. By default is 10, but you can change this number in BallsDrumComponent.</li>
+    <li>Each ball is numbered (from 1 to 10)</li>
+    <li>Each ball has the same probability to be drawn.</li>
+    <li>Minimum bet is 5 €</li>
+    <li>1 ball is drawn per event.</li>
+    <li>A winning bet will return 1.5 profit to the user</li>
+</ul>
+
+<h2> Components </h2>
+
+<ul>
+    <li><b>Ball Selector:</b> It will be responsible for displaying the betting opportunities and register user selection</li>
+    <li><b>Bet Slip:</b>It will be responsible for displaying the selection made by the user, the amount of money he is going to bet, and it will hold the button to place bet and start game.    </li>
+</ul>
+
+
+<button class="pointer go-button" (click)="goGame()">Go</button>

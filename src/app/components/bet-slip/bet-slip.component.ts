@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 //RxJS
 import { Subscription } from 'rxjs'
+import { BallI } from 'src/models/ball';
 
 @Component({
   selector: 'app-bet-slip',
@@ -32,8 +33,6 @@ export class BetSlipComponent implements OnDestroy{
       if(!x.input_stake || x.input_stake < 5){
         this.dataService.total_money = 0;
       }
-
-      
     })
 
     this.addOrDeleteBallSuscription = this.dataService.addOrDeleteBallEmitter$.subscribe( ball => {
@@ -44,12 +43,16 @@ export class BetSlipComponent implements OnDestroy{
 
   }
 
-  /* This function returns a list of numbers from 0 to n_balls-1
+  /* This function returns an array with the balls selected and gray balls untill max selection 
   * 
-  * @return Array<number>
+  * @return Array<BallI>
   */
-  public numSequence(): Array<number> {
-    return [...Array(this.dataService.bet.max_selection).keys()];
+  public ballsSelected(): Array<BallI> {
+    let balls_selected = this.dataService.bet.drum.filter(ball => ball.isSelected);
+    while(balls_selected.length < this.dataService.bet.max_selection){
+      balls_selected.push({number: 1, color:'gray', isSelected: false})
+    }
+    return balls_selected;
   }
 
   /* This method is called when we press Ok button in BetSlipComponent. We check this conditions:
@@ -62,12 +65,12 @@ export class BetSlipComponent implements OnDestroy{
   * @return boolean
   */
   public changeAmount(): boolean {
-    if (this.dataService.bet.balls_selected.length > 0) {
+    if (this.dataService.balls_selected > 0) {
       if (this.dataService.bet.input_stake) {
         if (this.dataService.bet.input_stake >= 5) {
-          if (this.dataService.user.wallet >= this.dataService.bet.input_stake * this.dataService.bet.balls_selected.length) {
+          if (this.dataService.user.wallet >= this.dataService.bet.input_stake * this.dataService.balls_selected) {
             this.errorMessage = "";
-            this.dataService.total_money = this.dataService.bet.input_stake * this.dataService.bet.balls_selected.length;
+            this.dataService.total_money = this.dataService.bet.input_stake * this.dataService.balls_selected;
             this.dataService.disabledToBet = false;
             return true;
           } else {
@@ -94,6 +97,7 @@ export class BetSlipComponent implements OnDestroy{
   * 3 We calculate the money that the user have won or lost
   * 4 We switch the state of the game as finished
   * 
+  * @return void
   */
   public placeBet(): void {
     if (this.changeAmount()) {
@@ -102,12 +106,10 @@ export class BetSlipComponent implements OnDestroy{
       let index = this.dataService.bet.drum.findIndex(b => b.number === result);
       this.dataService.bet.result_ball = this.dataService.bet.drum[index]
 
-      let won = this.dataService.bet.balls_selected.findIndex(b => b.number === result);
-
-      if (won != -1) {
-        this.dataService.bet.money_alteration = this.dataService.bet.input_stake * this.dataService.bet.balls_selected.length;
+      if (this.dataService.bet.result_ball.isSelected) {
+        this.dataService.bet.money_alteration = this.dataService.bet.input_stake * this.dataService.balls_selected;
       } else {
-        this.dataService.bet.money_alteration = -1 * this.dataService.bet.input_stake * this.dataService.bet.balls_selected.length;
+        this.dataService.bet.money_alteration = -1 * this.dataService.bet.input_stake * this.dataService.balls_selected;
       }
 
       this.dataService.user.wallet += this.dataService.bet.money_alteration;
@@ -116,12 +118,18 @@ export class BetSlipComponent implements OnDestroy{
     }
   }
 
-  /* This method is called when we have to disable the Place Bet button in BetSlipComponent, in order to recheck the amount introduced */
+  /* This method is called when we have to disable the Place Bet button in BetSlipComponent, in order to recheck the amount introduced 
+  *
+  * @return void
+  */
   public disablePlaceBetButton(): void {
     this.dataService.disabledToBet = true;
   }
 
-  // This method is called when component is destroyed and will delete the addOrDeleteBall suscription
+  /* This method is called when component is destroyed and will delete the addOrDeleteBall suscription
+  *
+  * @return void
+  */
   ngOnDestroy(): void {
     this.addOrDeleteBallSuscription.unsubscribe();
   }

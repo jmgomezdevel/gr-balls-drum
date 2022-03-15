@@ -6,6 +6,7 @@ import { BallsDrumComponent } from './components/balls-drum/balls-drum.component
 import { BallSelectorComponent } from './components/ball-selector/ball-selector.component';
 import { BetSlipComponent } from './components/bet-slip/bet-slip.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     ReactiveFormsModule
   ],
   providers: [],
