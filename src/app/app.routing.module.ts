@@ -1,25 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BallsDrumComponent } from './components/balls-drum/balls-drum.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
-
-// Guards
-import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: '/welcome',
+    loadChildren: () => import('./modules/welcome/welcome.routing.module').then(m => m.WelcomeRoutingModule)
   },
   {
-    path: 'welcome',
-    component: WelcomeComponent
-  },
-  {
-    path: 'balls-drum',
-    canActivate: [AuthGuard],
-    component: BallsDrumComponent
+    path: 'game',
+    loadChildren: () => import('./modules/game/game.routing.module').then(m => m.GameRoutingModule)
   }
 ];
 
