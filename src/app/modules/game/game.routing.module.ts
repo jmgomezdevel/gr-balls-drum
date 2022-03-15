@@ -8,20 +8,17 @@ import { AuthGuard } from '../../shared/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: '/balls-drum',
+    redirectTo: 'balls-drum',
   },
   {
     path: 'balls-drum',
     canActivate: [AuthGuard],
-    component: BallsDrumComponent
-  }
+    component: BallsDrumComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GameRoutingModule {
-
-}
+export class GameRoutingModule {}
