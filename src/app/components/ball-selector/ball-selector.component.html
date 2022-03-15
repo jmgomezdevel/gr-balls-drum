@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <a *ngIf="dataService.state === 'ready'" class="clear-button pointer mb-20" (click)='clearSelection()'>Clear selection</a>
+        <a *ngIf="dataService.state === 'ready'" class="clear-button pointer mb-20" (click)='dataService.clearSelection()'>Clear selection</a>
         <div *ngIf="dataService.state === 'finished'" class="mb-20 center-center" >
             <div *ngIf="dataService.bet.money_alteration >= 1" class="win">
                 <b>YOU WIN {{dataService.bet.money_alteration}} €</b>

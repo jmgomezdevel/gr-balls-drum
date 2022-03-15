@@ -1,36 +1,4 @@
-$game-width: 900px;
-$game-height: 400px;
-
-// Colors
-
-$game-bg-color: #f3f2f8;
-$bg-white: #ffffff;
-$gray: #e3e3ed;
-
-$light-blue: #00a3e8;
-$strong-blue: #018dc9;
-
-$strong-green: #4ca668;
-$light-green: #e1f3ef;
-$border-green: #d8dedc;
-
-$strong-red: #d95155;
-$light-red: #ffe9ec;
-$border-red: #e3d4d9;
-
-$strong-yellow: #ffc642;
-$light-yellow: #fcfbe3;
-$border-yellow: #fcf2db;
-
-$place-bet-blue: #2491fa;
-$place-bet-disabled: #7ec1ff;
-
-// Borders
-$game-border-left: 3px solid #0b43ac;
-$place-bet-border: #2491fa;
-
-
-// -------------------------------------------------------------------------------------- //
+@import './variables';
 
 body{
     background-color: $game-bg-color;

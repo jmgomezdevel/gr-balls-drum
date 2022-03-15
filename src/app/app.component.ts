@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'gr-balls-drum';
+  n_balls = 10;
+  max_selection = 8;
 }

@@ -2,7 +2,7 @@
     <div id="bet_amount" class="columns center-center">
 
         <div id="balls_selected" class="rows">
-            <div *ngFor="let number of [0,1,2,3,4,5,6,7]" [ngClass]="{
+            <div *ngFor="let number of numSequence()" [ngClass]="{
                 'little-circle': true, 
                 'ml-4': true, 
                 'center-center': true, 
@@ -16,12 +16,13 @@
             </div>
         </div>
 
-        <div id="input_stake" class="rows mb-20">
-            <div class="center-center gray wh-40">{{dataService.bet.balls_selected.length}}x</div>
-            <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
-                id="input_stake_money" value="{{dataService.bet.input_stake}}">
-            <button id="ok_button" type="button" (click)="changeAmount()">Ok</button>
-        </div>
+        <form [formGroup] = "form">
+            <div id="input_stake" class="rows mb-20">
+                <div class="center-center gray wh-40">{{dataService.bet.balls_selected.length}}x</div>
+                <input type="number" id="input_stake_money" class="form-control" formControlName="input_stake" [class.red-border]="form.get('input_stake')?.touched && form.get('input_stake')?.invalid" value="{{dataService.bet.input_stake}}">
+                <button id="ok_button" type="button" (click)="changeAmount()" [disabled]="dataService.state==='finished'">Ok</button>
+            </div>
+        </form>
 
         <div *ngIf="errorMessage" class="mw-90">
             <div class="danger-alert center-center">
@@ -35,6 +36,7 @@
 
     <div id="total_money" class="center-center mt-10"> Total: {{dataService.total_money}}€</div>
     <div id="place_bet" class="center mt-10">
-        <button id="place_bet_button" type="button" (click)="placeBet()" disabled="true">Place bet</button>
+        <button *ngIf="dataService.state === 'ready'" id="place_bet_button" type="button" (click)="placeBet()" [disabled]="dataService.disabledToBet">Place bet</button>
+        <button *ngIf="dataService.state === 'finished'" id="restart_button" type="button" (click)="dataService.restartGame()">Restart game</button>
     </div>
 </div>

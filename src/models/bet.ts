@@ -1,15 +1,13 @@
 import { Ball } from "./ball";
 
-export class Bet{
-    constructor(
-        public _id: string,
-        public n_balls: number,
-        public max_selection: number,
-        public drum: Ball[],
-        public balls_selected: Ball[],
-        public result_ball: Ball,
-        public input_stake: number,
-        public money_alteration: number,
-        public user: string
-    ){};
+export interface Bet{
+    id: string,
+    n_balls: number,
+    max_selection: number,
+    drum: Ball[],
+    balls_selected: Ball[],
+    result_ball: Ball,
+    input_stake: number,
+    money_alteration: number,
+    user: string
 }

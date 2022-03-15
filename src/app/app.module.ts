@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BallsDrumComponent } from './balls-drum/balls-drum.component';
-import { BallSelectorComponent } from './ball-selector/ball-selector.component';
-import { BetSlipComponent } from './bet-slip/bet-slip.component';
+import { BallsDrumComponent } from './components/balls-drum/balls-drum.component';
+import { BallSelectorComponent } from './components/ball-selector/ball-selector.component';
+import { BetSlipComponent } from './components/bet-slip/bet-slip.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { BetSlipComponent } from './bet-slip/bet-slip.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

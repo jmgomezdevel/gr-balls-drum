@@ -19,7 +19,8 @@ describe('BallsDrumComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('constructor should have initialized drum, that should have the same length that n_balls ', () => {
+    expect(component.dataService.bet.drum.length).toEqual(component.n_balls)
   });
+
 });
